@@ -3,65 +3,103 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>115年度 EEW 成果交流會報名系統</title>
+    <title>115年合作推動地震資訊傳遞服務成果交流會</title>
     <style>
         :root {
-            --primary-color: #0056b3;
-            --secondary-color: #f4f7f6;
-            --accent-color: #ff9800;
-            --text-color: #333;
-            --white: #ffffff;
+            --bg-dark: #0f172a; /* 深色科技背景 */
+            --bg-card: #1e293b; /* 卡片背景 */
+            --text-main: #f8fafc; /* 主要文字 */
+            --text-muted: #94a3b8; /* 次要文字 */
+            --seismic-blue: #38bdf8; /* 地震科技藍 */
+            --alert-orange: #f97316; /* 警報橘 */
+            --border-color: #334155;
         }
 
         body {
-            font-family: 'Helvetica Neue', Arial, '微軟正黑體', sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, '微軟正黑體', sans-serif;
             margin: 0;
             padding: 0;
-            color: var(--text-color);
-            background-color: var(--secondary-color);
+            color: var(--text-main);
+            background-color: var(--bg-dark);
+            background-image: 
+                radial-gradient(circle at 15% 50%, rgba(56, 189, 248, 0.05), transparent 25%),
+                radial-gradient(circle at 85% 30%, rgba(249, 115, 22, 0.05), transparent 25%);
             line-height: 1.6;
         }
 
+        /* 標題區塊 - 模擬地震波裝飾 */
         header {
-            background-color: var(--primary-color);
-            color: var(--white);
-            padding: 40px 20px;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            padding: 60px 20px;
             text-align: center;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border-bottom: 2px solid var(--seismic-blue);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: repeating-linear-gradient(90deg, var(--seismic-blue) 0, var(--seismic-blue) 10px, transparent 10px, transparent 20px);
+            opacity: 0.7;
         }
 
         header h1 {
             margin: 0;
-            font-size: 2.5em;
+            font-size: 2.2em;
+            color: var(--seismic-blue);
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px rgba(56, 189, 248, 0.3);
         }
 
         header p {
             font-size: 1.2em;
-            margin-top: 10px;
-            opacity: 0.9;
+            color: var(--text-muted);
+            margin-top: 15px;
         }
 
         .container {
-            max-width: 800px;
+            max-width: 900px;
             margin: 40px auto;
             padding: 0 20px;
         }
 
         .section-card {
-            background: var(--white);
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            margin-bottom: 30px;
+            background: var(--bg-card);
+            padding: 35px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            margin-bottom: 40px;
+            border-left: 4px solid var(--seismic-blue);
+            transition: transform 0.3s ease;
+        }
+
+        .section-card:hover {
+            transform: translateY(-2px);
         }
 
         .section-card h2 {
-            color: var(--primary-color);
-            border-bottom: 2px solid var(--primary-color);
-            padding-bottom: 10px;
+            color: var(--seismic-blue);
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 15px;
             margin-top: 0;
+            font-size: 1.5em;
+            display: flex;
+            align-items: center;
         }
 
+        .section-card h2::before {
+            content: "►";
+            font-size: 0.8em;
+            margin-right: 10px;
+            color: var(--alert-orange);
+        }
+
+        /* 資訊列表 */
         .info-list {
             list-style: none;
             padding: 0;
@@ -70,24 +108,59 @@
         .info-list li {
             margin-bottom: 15px;
             font-size: 1.1em;
+            display: flex;
         }
 
-        .info-list span {
+        .info-list span.label {
             font-weight: bold;
-            color: var(--primary-color);
-            display: inline-block;
+            color: var(--alert-orange);
             width: 100px;
+            flex-shrink: 0;
         }
 
-        /* Form Styles */
+        /* 議程表 */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: rgba(0,0,0,0.2);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: center;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        th {
+            background-color: rgba(56, 189, 248, 0.1);
+            color: var(--seismic-blue);
+            font-weight: bold;
+        }
+
+        tr:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        .section-title {
+            background-color: rgba(249, 115, 22, 0.1);
+            color: var(--alert-orange);
+            font-weight: bold;
+            text-align: center;
+        }
+
+        /* 表單樣式 */
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
 
         label {
             display: block;
             margin-bottom: 8px;
             font-weight: bold;
+            color: var(--text-muted);
         }
 
         input[type="text"],
@@ -96,78 +169,168 @@
         select {
             width: 100%;
             padding: 12px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
+            background-color: #0f172a;
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            border-radius: 6px;
             box-sizing: border-box;
             font-size: 1em;
+            transition: all 0.3s;
         }
 
-        input[type="text"]:focus,
-        input[type="email"]:focus,
-        select:focus {
-            border-color: var(--primary-color);
+        input:focus, select:focus {
+            border-color: var(--seismic-blue);
             outline: none;
-            box-shadow: 0 0 5px rgba(0, 86, 179, 0.3);
+            box-shadow: 0 0 8px rgba(56, 189, 248, 0.4);
         }
 
         button.submit-btn {
-            background-color: var(--accent-color);
-            color: var(--white);
+            background: linear-gradient(135deg, var(--alert-orange) 0%, #ea580c 100%);
+            color: #fff;
             border: none;
-            padding: 15px 30px;
+            padding: 16px 30px;
             font-size: 1.2em;
-            border-radius: 5px;
+            border-radius: 6px;
             cursor: pointer;
             width: 100%;
             font-weight: bold;
-            transition: background-color 0.3s;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(249, 115, 22, 0.3);
         }
 
         button.submit-btn:hover {
-            background-color: #e68a00;
+            background: linear-gradient(135deg, #fb923c 0%, var(--alert-orange) 100%);
+            box-shadow: 0 6px 20px rgba(249, 115, 22, 0.5);
+            transform: translateY(-2px);
         }
 
         button.submit-btn:disabled {
-            background-color: #cccccc;
+            background: var(--border-color);
             cursor: not-allowed;
+            box-shadow: none;
+            transform: none;
         }
 
-        /* Message Overlay */
         #message-box {
             display: none;
             padding: 15px;
             margin-top: 20px;
-            border-radius: 5px;
+            border-radius: 6px;
             text-align: center;
             font-weight: bold;
         }
 
-        .success { background-color: #d4edda; color: #155724; }
-        .error { background-color: #f8d7da; color: #721c24; }
-        .loading { background-color: #e2e3e5; color: #383d41; }
+        .success { background-color: rgba(34, 197, 94, 0.2); color: #4ade80; border: 1px solid #22c55e; }
+        .error { background-color: rgba(239, 68, 68, 0.2); color: #f87171; border: 1px solid #ef4444; }
+        .loading { background-color: rgba(56, 189, 248, 0.2); color: #7dd3fc; border: 1px solid #38bdf8; }
+
+        /* 手機版微調 */
+        @media (max-width: 600px) {
+            .info-list li { flex-direction: column; }
+            .info-list span.label { margin-bottom: 5px; }
+            th, td { padding: 10px 5px; font-size: 0.9em; }
+        }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>115年度 EEW 成果交流會</h1>
-        <p>地震預警 (Earthquake Early Warning) 產官學技術研討與交流</p>
+        <h1>115年合作推動地震資訊傳遞服務<br>成果交流會</h1>
+        <p>Earthquake Information Delivery Service Seminar</p>
     </header>
 
     <div class="container">
         
-        <div class="section-card">
+        <!-- 區塊一：研討會資訊介紹 -->
+        <div class="section-card" id="info">
             <h2>活動資訊</h2>
             <ul class="info-list">
-                <li><span>活動日期：</span>115年 10月 20日 (週二) 09:00 - 16:30</li>
-                <li><span>活動地點：</span>交通部中央氣象署 國際會議廳</li>
-                <li><span>報名期限：</span>即日起至 115年 10月 10日止</li>
-                <li><span>主辦單位：</span>交通部中央氣象署</li>
-                <li><span>注意事項：</span>報名成功後，系統將自動發送「報到 QR Code」至您的信箱，活動當天請憑 QR Code 掃描入場。</li>
+                <li><span class="label">活動日期</span><span>115年 11月 24日 (週二) 14:00 - 17:00</span></li>
+                <li><span class="label">活動地點</span><span>中央氣象署 3樓 310會議室<br>(臺北市中正區公園路64號)</span></li>
+                <li><span class="label">主辦單位</span><span>交通部中央氣象署地震測報中心</span></li>
+                <li><span class="label">注意事項</span><span>報名成功後，系統將自動發送「報到 QR Code」至您的信箱，活動當天請憑信件掃描報到入場。</span></li>
             </ul>
         </div>
 
-        <div class="section-card">
+        <!-- 區塊二：議程表 -->
+        <div class="section-card" id="agenda">
+            <h2>活動流程</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th width="30%">時間</th>
+                        <th width="70%">流程</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>13:00 ~ 13:40</td>
+                        <td>報到 Registration</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="2">13:40 ~ 13:55</td>
+                        <td>開幕 Opening Ceremony<br><span style="font-size:0.9em; color:var(--text-muted);">主席致詞：地震測報中心 吳健富主任</span></td>
+                    </tr>
+                    <tr>
+                        <td>來賓致詞：待確認</td>
+                    </tr>
+                    <tr>
+                        <td>13:55 ~ 14:10</td>
+                        <td>中央氣象署地震測報中心</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="section-title">Section 1 地震資訊傳遞服務成果展示 (主持人：蕭乃祺副主任)</td>
+                    </tr>
+                    <tr>
+                        <td>14:10 ~ 14:25</td>
+                        <td>講者待確認</td>
+                    </tr>
+                    <tr>
+                        <td>14:25 ~ 14:40</td>
+                        <td>講者待確認</td>
+                    </tr>
+                    <tr>
+                        <td>14:40 ~ 14:55</td>
+                        <td>講者待確認</td>
+                    </tr>
+                    <tr>
+                        <td>14:55 ~ 15:10</td>
+                        <td>講者待確認</td>
+                    </tr>
+                    <tr>
+                        <td>15:10 ~ 15:50</td>
+                        <td>交流時間 Coffee break</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="section-title">Section 2 地震資訊傳遞服務成果展示 (主持人：蕭乃祺副主任)</td>
+                    </tr>
+                    <tr>
+                        <td>15:50 ~ 16:05</td>
+                        <td>講者待確認</td>
+                    </tr>
+                    <tr>
+                        <td>16:05 ~ 16:20</td>
+                        <td>講者待確認</td>
+                    </tr>
+                    <tr>
+                        <td>16:20 ~ 16:35</td>
+                        <td>講者待確認</td>
+                    </tr>
+                    <tr>
+                        <td>16:35 ~ 16:50</td>
+                        <td>講者待確認</td>
+                    </tr>
+                    <tr>
+                        <td>17:00 ~</td>
+                        <td>交流會結束</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- 區塊三：線上報名 -->
+        <div class="section-card" id="registration">
             <h2>線上報名</h2>
             <form id="registrationForm">
                 <div class="form-group">
@@ -182,7 +345,7 @@
 
                 <div class="form-group">
                     <label for="title">職稱 *</label>
-                    <input type="text" id="title" name="title" required placeholder="例如：研究員、經理">
+                    <input type="text" id="title" name="title" required placeholder="例如：研究員、工程師">
                 </div>
 
                 <div class="form-group">
@@ -193,15 +356,6 @@
                 <div class="form-group">
                     <label for="phone">聯絡電話 *</label>
                     <input type="tel" id="phone" name="phone" required placeholder="09XX-XXX-XXX">
-                </div>
-
-                <div class="form-group">
-                    <label for="diet">飲食習慣 (午餐)</label>
-                    <select id="diet" name="diet">
-                        <option value="葷食">葷食</option>
-                        <option value="素食">素食</option>
-                        <option value="不用餐">不用餐</option>
-                    </select>
                 </div>
 
                 <button type="submit" id="submitBtn" class="submit-btn">確認送出報名</button>
@@ -216,53 +370,52 @@
         const submitBtn = document.getElementById('submitBtn');
         const messageBox = document.getElementById('message-box');
 
-        // ★★★ 請替換成您的 Google Apps Script (GAS) 部署後的 Web App 網址 ★★★
-        const GAS_WEB_APP_URL = 'https://script.google.com/macros/s/您的網址ID/exec'; 
+        // ★ 此處等待後續 GAS 網址設定 ★
+        const GAS_WEB_APP_URL = 'YOUR_GAS_URL_HERE'; 
 
         form.addEventListener('submit', function(e) {
-            e.preventDefault(); // 防止網頁重新整理
+            e.preventDefault(); 
+            
+            // 如果還沒設定 GAS 網址，先給提示 (開發用)
+            if(GAS_WEB_APP_URL === 'YOUR_GAS_URL_HERE') {
+                messageBox.className = 'loading';
+                messageBox.textContent = '【測試提示】網頁前端功能正常！但尚未串接後端資料庫，請繼續後續 GAS 設定。';
+                messageBox.style.display = 'block';
+                return;
+            }
 
-            // 更新按鈕狀態為處理中
             submitBtn.disabled = true;
-            submitBtn.textContent = '報名資料傳送中...';
+            submitBtn.textContent = '資料傳送與產製 QR Code 中...';
             messageBox.className = 'loading';
-            messageBox.textContent = '系統正在處理您的報名並生成 QR Code，請稍候...';
+            messageBox.textContent = '系統處理中，請稍候...';
             messageBox.style.display = 'block';
 
-            // 收集表單資料
             const formData = new FormData(form);
             const data = {};
             formData.forEach((value, key) => { data[key] = value });
 
-            // 透過 Fetch API 傳送 POST 請求至 GAS
             fetch(GAS_WEB_APP_URL, {
                 method: 'POST',
-                // 因為 GAS CORS 限制，通常使用 text/plain 發送 JSON 格式資料，GAS 端解析
                 body: JSON.stringify(data),
-                headers: {
-                    'Content-Type': 'text/plain;charset=utf-8',
-                }
+                headers: { 'Content-Type': 'text/plain;charset=utf-8' }
             })
             .then(response => response.json())
             .then(result => {
                 if (result.status === 'success') {
-                    // 成功狀態
                     messageBox.className = 'success';
-                    messageBox.textContent = '報名成功！系統已發送報到 QR Code 至您的信箱，請查收。';
-                    form.reset(); // 清空表單
+                    messageBox.textContent = '報名成功！報到 QR Code 已寄至您的信箱，請查收。';
+                    form.reset();
                 } else {
-                    // 失敗狀態
                     messageBox.className = 'error';
-                    messageBox.textContent = '報名失敗，請稍後再試或聯繫主辦單位。原因：' + result.message;
+                    messageBox.textContent = '報名失敗，請稍後再試。原因：' + result.message;
                 }
             })
             .catch(error => {
                 console.error('Error:', error);
                 messageBox.className = 'error';
-                messageBox.textContent = '網路連線異常，請確認網路狀態後重試！';
+                messageBox.textContent = '網路連線異常，請重試！';
             })
             .finally(() => {
-                // 恢復按鈕狀態
                 submitBtn.disabled = false;
                 submitBtn.textContent = '確認送出報名';
             });
