@@ -21,11 +21,10 @@
             padding: 0;
             color: var(--text-main);
             background-color: var(--bg-color);
-            /* ★ 背景圖範例：若您有圖片，可將檔名替換掉下方 url 的單引號內容 ★ */
-            /* background-image: url('您的背景圖檔名.jpg'); */
-            /* background-size: cover; */
-            /* background-attachment: fixed; */
             line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
         header {
@@ -52,6 +51,7 @@
             max-width: 900px;
             margin: 30px auto;
             padding: 0 20px;
+            flex: 1; /* 讓頁尾可以推到最底下 */
         }
 
         /* 頁籤選單設計 */
@@ -149,6 +149,24 @@
             .info-list span.label { margin-bottom: 5px; }
             .tabs { flex-direction: column; }
         }
+
+        /* 頁尾樣式 (對應您的截圖) */
+        footer {
+            background-color: #1a1a1a; /* 預設深灰色背景 */
+            
+            /* 若您上傳了截圖中的背景圖，請刪除下一行開頭的 /* 並修改檔名 */
+            /* background-image: url('您的波紋背景圖片檔名.jpg'); */
+            
+            background-size: cover;
+            background-position: center;
+            color: #ffffff;
+            text-align: center;
+            padding: 60px 20px;
+            margin-top: 50px;
+            font-size: 1.1em;
+            letter-spacing: 2px;
+            box-shadow: inset 0 5px 15px rgba(0,0,0,0.3);
+        }
     </style>
 </head>
 <body>
@@ -159,7 +177,6 @@
     </header>
 
     <div class="container">
-        
         <!-- 頁籤按鈕 -->
         <div class="tabs">
             <button class="tab-btn active" onclick="openTab('info')">交流會資訊</button>
@@ -170,12 +187,10 @@
         <!-- 區塊一：交流會資訊 -->
         <div id="info" class="tab-content active">
             <h2 class="section-title">活動資訊</h2>
-            <!-- ★ 影片範例：若要放 YouTube，可貼在此處 ★ -->
-            <!-- <iframe width="100%" height="315" src="https://www.youtube.com/embed/影片ID" frameborder="0" allowfullscreen></iframe> -->
             <ul class="info-list">
                 <li><span class="label">活動日期</span><span>115年 11月 24日 (週二) 14:00 - 17:00</span></li>
                 <li><span class="label">活動地點</span><span>中央氣象署 3樓 310會議室<br>(臺北市中正區公園路64號)</span></li>
-                <li><span class="label">主辦單位</span><span>交通部中央氣象署地震測報中心</span></li>
+                <li><span class="label">主辦單位</span><span>地震測報中心、健行科技大學</span></li>
                 <li><span class="label">注意事項</span><span>報名成功後，系統將自動發送「報到 QR Code」至您的信箱，憑信件掃描入場。</span></li>
             </ul>
         </div>
@@ -238,20 +253,21 @@
         </div>
     </div>
 
+    <!-- 頁尾區塊 -->
+    <footer>
+        主辦單位：地震測報中心、健行科技大學
+    </footer>
+
     <script>
         // 頁籤切換邏輯
         function openTab(tabId) {
-            // 隱藏所有內容
             document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
-            // 移除所有按鈕的 active 狀態
             document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-            
-            // 顯示被點擊的內容，並設定按鈕狀態
             document.getElementById(tabId).classList.add('active');
             event.currentTarget.classList.add('active');
         }
 
-        // 表單送出邏輯 (與先前相同)
+        // 表單送出邏輯
         const form = document.getElementById('registrationForm');
         const submitBtn = document.getElementById('submitBtn');
         const messageBox = document.getElementById('message-box');
