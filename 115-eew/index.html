@@ -6,47 +6,22 @@
     <title>115年合作推動地震資訊傳遞服務成果交流會</title>
     <style>
         :root {
-            --primary-blue: #0284c7;
-            --light-blue: #e0f2fe;
-            --bg-color: #f8fafc;
-            --card-bg: #ffffff;
-            --text-main: #334155;
-            --text-muted: #64748b;
-            --accent-orange: #f97316;
+            --primary-blue: #0284c7; --light-blue: #e0f2fe; --bg-color: #f8fafc;
+            --card-bg: #ffffff; --text-main: #334155; --text-muted: #64748b; --accent-orange: #f97316;
         }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, '微軟正黑體', sans-serif;
-            margin: 0; padding: 0; color: var(--text-main);
-            background-color: var(--bg-color); line-height: 1.6;
-            display: flex; flex-direction: column; min-height: 100vh;
-        }
-
-        header {
-            background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%);
-            padding: 50px 20px; text-align: center;
-            border-bottom: 3px solid var(--primary-blue);
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-        }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, '微軟正黑體', sans-serif; margin: 0; padding: 0; color: var(--text-main); background-color: var(--bg-color); line-height: 1.6; display: flex; flex-direction: column; min-height: 100vh; }
+        header { background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%); padding: 50px 20px; text-align: center; border-bottom: 3px solid var(--primary-blue); box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); }
         header h1 { margin: 0; font-size: 2.2em; color: var(--primary-blue); }
         header p { font-size: 1.2em; color: var(--text-muted); margin-top: 10px; }
-
         .container { max-width: 900px; margin: 30px auto; padding: 0 20px; flex: 1; }
 
-        /* 頁籤選單設計 */
         .tabs { display: flex; justify-content: center; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
-        .tab-btn {
-            background-color: var(--card-bg); border: 2px solid var(--light-blue);
-            color: var(--primary-blue); padding: 12px 25px; font-size: 1.1em;
-            font-weight: bold; border-radius: 8px; cursor: pointer; transition: all 0.3s;
-        }
+        .tab-btn { background-color: var(--card-bg); border: 2px solid var(--light-blue); color: var(--primary-blue); padding: 12px 25px; font-size: 1.1em; font-weight: bold; border-radius: 8px; cursor: pointer; transition: all 0.3s; }
         .tab-btn:hover { background-color: var(--light-blue); }
         .tab-btn.active { background-color: var(--primary-blue); color: white; border-color: var(--primary-blue); }
 
-        .tab-content {
-            display: none; background: var(--card-bg); padding: 35px; border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-top: 4px solid var(--primary-blue);
-        }
+        .tab-content { display: none; background: var(--card-bg); padding: 35px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-top: 4px solid var(--primary-blue); }
         .tab-content.active { display: block; animation: fadeIn 0.4s ease-in-out; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
@@ -62,37 +37,19 @@
 
         .form-group { margin-bottom: 20px; }
         label { display: block; margin-bottom: 8px; font-weight: bold; color: var(--text-main); }
-        input[type="text"], input[type="email"], input[type="tel"], select {
-            width: 100%; padding: 12px; border: 1px solid #cbd5e1; border-radius: 6px; box-sizing: border-box; font-size: 1em;
-        }
+        input[type="text"], input[type="email"], input[type="tel"], select { width: 100%; padding: 12px; border: 1px solid #cbd5e1; border-radius: 6px; box-sizing: border-box; font-size: 1em; }
         input:focus, select:focus { border-color: var(--primary-blue); outline: none; box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.2); }
         
-        button.submit-btn {
-            background-color: var(--accent-orange); color: white; border: none; padding: 15px 30px; font-size: 1.2em;
-            border-radius: 6px; cursor: pointer; width: 100%; font-weight: bold; transition: all 0.3s;
-        }
+        button.submit-btn { background-color: var(--accent-orange); color: white; border: none; padding: 15px 30px; font-size: 1.2em; border-radius: 6px; cursor: pointer; width: 100%; font-weight: bold; transition: all 0.3s; }
         button.submit-btn:hover { background-color: #ea580c; }
         button.submit-btn:disabled { background-color: #cbd5e1; cursor: not-allowed; }
 
-        footer {
-            background-color: #1a1a1a; color: #ffffff; text-align: center; padding: 60px 20px; margin-top: 50px;
-            font-size: 1.1em; letter-spacing: 2px;
-        }
+        footer { background-color: #1a1a1a; color: #ffffff; text-align: center; padding: 60px 20px; margin-top: 50px; font-size: 1.1em; letter-spacing: 2px; }
 
-        /* 自訂警告視窗樣式 */
-        .custom-alert-overlay {
-            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.5); z-index: 1000; justify-content: center; align-items: center;
-        }
-        .custom-alert-box {
-            background: white; padding: 20px 30px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            text-align: center; max-width: 400px; width: 90%;
-        }
+        .custom-alert-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000; justify-content: center; align-items: center; }
+        .custom-alert-box { background: white; padding: 20px 30px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); text-align: center; max-width: 400px; width: 90%; }
         .custom-alert-box h3 { color: #f97316; margin-top: 0; border-bottom: 2px solid #eee; padding-bottom: 10px;}
-        .custom-alert-btn {
-            background: #0284c7; color: white; border: none; padding: 10px 20px; border-radius: 5px;
-            cursor: pointer; margin-top: 15px; font-weight: bold;
-        }
+        .custom-alert-btn { background: #0284c7; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; margin-top: 15px; font-weight: bold; }
     </style>
 </head>
 <body>
@@ -103,14 +60,12 @@
     </header>
 
     <div class="container">
-        <!-- 頁籤按鈕 -->
         <div class="tabs">
             <button class="tab-btn active" onclick="openTab('info')">交流會資訊</button>
             <button class="tab-btn" onclick="openTab('agenda')">活動議程</button>
             <button class="tab-btn" onclick="openTab('registration')">線上報名</button>
         </div>
 
-        <!-- 區塊一：交流會資訊 -->
         <div id="info" class="tab-content active">
             <h2 class="section-title">活動資訊</h2>
             <ul class="info-list">
@@ -121,7 +76,6 @@
             </ul>
         </div>
 
-        <!-- 區塊二：活動議程 -->
         <div id="agenda" class="tab-content">
             <h2 class="section-title">活動流程</h2>
             <table>
@@ -131,30 +85,23 @@
                     <tr><td rowspan="2">13:40 ~ 13:55</td><td>開幕 Opening Ceremony<br><span style="font-size:0.9em; color:var(--text-muted);">主席致詞：地震測報中心 吳健富主任</span></td></tr>
                     <tr><td>來賓致詞：待確認</td></tr>
                     <tr><td>13:55 ~ 14:10</td><td>中央氣象署地震測報中心</td></tr>
-                    <tr><td colspan="2" class="table-section-title">Section 1 地震資訊傳遞服務成果展示 (主持人：蕭乃祺副主任)</td></tr>
-                    <tr><td>14:10 ~ 14:25</td><td>講者待確認</td></tr>
-                    <tr><td>14:25 ~ 14:40</td><td>講者待確認</td></tr>
-                    <tr><td>14:40 ~ 14:55</td><td>講者待確認</td></tr>
-                    <tr><td>14:55 ~ 15:10</td><td>講者待確認</td></tr>
+                    <tr><td colspan="2" class="table-section-title">Section 1 地震資訊傳遞服務成果展示</td></tr>
+                    <tr><td>14:10 ~ 15:10</td><td>講者待確認 (多場次)</td></tr>
                     <tr><td>15:10 ~ 15:50</td><td>交流時間 Coffee break</td></tr>
-                    <tr><td colspan="2" class="table-section-title">Section 2 地震資訊傳遞服務成果展示 (主持人：蕭乃祺副主任)</td></tr>
-                    <tr><td>15:50 ~ 16:05</td><td>講者待確認</td></tr>
-                    <tr><td>16:05 ~ 16:20</td><td>講者待確認</td></tr>
-                    <tr><td>16:20 ~ 16:35</td><td>講者待確認</td></tr>
-                    <tr><td>16:35 ~ 16:50</td><td>講者待確認</td></tr>
+                    <tr><td colspan="2" class="table-section-title">Section 2 地震資訊傳遞服務成果展示</td></tr>
+                    <tr><td>15:50 ~ 16:50</td><td>講者待確認 (多場次)</td></tr>
                     <tr><td>17:00 ~</td><td>交流會結束</td></tr>
                 </tbody>
             </table>
         </div>
 
-        <!-- 區塊三：線上報名 -->
         <div id="registration" class="tab-content">
             <h2 class="section-title">線上報名</h2>
             <p style="color: #0284c7; background-color: #e0f2fe; padding: 12px; border-radius: 6px; font-size: 0.95em; font-weight: bold; margin-bottom: 20px;">
-                💡 為了確保報名後能正確收到 QR Code 報到信件，請先驗證您的 Email 信箱，驗證成功後即可填寫完整報名資訊。
+                💡 為了確保報名後能正確收到 QR Code，請先驗證 Email 信箱。驗證成功後即可填寫完整報名資訊。
             </p>
             
-            <!-- Step 1: 信箱與機器人驗證 -->
+            <!-- Step 1: 發送 Email 驗證碼 -->
             <div id="step1">
                 <div class="form-group">
                     <label>電子信箱 (Email) *</label>
@@ -166,13 +113,19 @@
                 <button type="button" id="sendCodeBtn" class="submit-btn">發送驗證碼</button>
             </div>
 
-            <!-- Step 2: 填寫完整表單 -->
-            <form id="registrationForm" style="display:none; margin-top:20px;">
+            <!-- Step 2: 填寫並比對驗證碼 (預設隱藏) -->
+            <div id="step2" style="display:none; margin-top:20px;">
                 <hr style="margin-bottom:20px; border-top:1px dashed #ccc;">
                 <div class="form-group">
                     <label>6位數驗證碼 *</label>
-                    <input type="text" id="verifyCode" name="code" required placeholder="請查看信箱並輸入驗證碼">
+                    <input type="text" id="verifyCode" required placeholder="請查看信箱並輸入驗證碼" style="letter-spacing: 2px; text-align: center; font-size: 1.2em;">
                 </div>
+                <button type="button" id="checkCodeBtn" class="submit-btn" style="background-color: #0284c7;">確認驗證碼</button>
+            </div>
+
+            <!-- Step 3: 填寫完整報名表單 (預設隱藏) -->
+            <form id="registrationForm" style="display:none; margin-top:20px;">
+                <hr style="margin-bottom:20px; border-top:1px dashed #ccc;">
                 <div class="form-group"><label>姓名 *</label><input type="text" name="name" required></div>
                 <div class="form-group"><label>服務單位 *</label><input type="text" name="organization" required></div>
                 <div class="form-group"><label>職稱 *</label><input type="text" name="title" required></div>
@@ -188,7 +141,7 @@
                 <button type="submit" id="submitFinalBtn" class="submit-btn">確認送出報名</button>
             </form>
 
-            <!-- Step 3: 成功畫面 -->
+            <!-- Step 4: 成功畫面 -->
             <div id="successDisplay" style="display:none; text-align:center; padding:20px;">
                 <h2 style="color:#166534;">🎉 報名成功！</h2>
                 <div style="background:#f8fafc; padding:20px; text-align:left; border-radius:8px; margin:20px 0;">
@@ -204,7 +157,6 @@
 
     <footer>主辦單位：交通部中央氣象署-地震測報中心</footer>
 
-    <!-- 自訂警告視窗 -->
     <div id="customAlert" class="custom-alert-overlay">
         <div class="custom-alert-box">
             <h3>系統管理員 說：</h3>
@@ -226,24 +178,21 @@
             document.getElementById('customAlert').style.display = 'flex';
         }
 
+        // ★★★ 請替換為您最新的 GAS 網址 ★★★
         const GAS_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbwyFs9I2P3Wr03ui3zDcgB1HPeanB6DTJhe4zoQkO1fORHjwsefQ049jSC650kVu8Q7/exec'; 
+
         const notRobot = document.getElementById('notRobot');
-        const sendCodeBtn = document.getElementById('sendCodeBtn');
         const verifyEmail = document.getElementById('verifyEmail');
+        const sendCodeBtn = document.getElementById('sendCodeBtn');
+        const checkCodeBtn = document.getElementById('checkCodeBtn');
+        const verifyCodeInput = document.getElementById('verifyCode');
         
-        // 發送驗證碼
+        // Step 1: 發送驗證碼
         sendCodeBtn.addEventListener('click', () => {
-            if (!notRobot.checked) { 
-                showCustomAlert('為了系統安全，請先勾選「我不是機器人」！'); 
-                return; 
-            }
-            if(!verifyEmail.value.includes('@')) { 
-                showCustomAlert('請輸入有效的信箱格式！'); 
-                return; 
-            }
+            if (!notRobot.checked) { showCustomAlert('為了系統安全，請先勾選「我不是機器人」！'); return; }
+            if(!verifyEmail.value.includes('@')) { showCustomAlert('請輸入有效的信箱格式！'); return; }
             
-            sendCodeBtn.disabled = true;
-            sendCodeBtn.textContent = '驗證碼發送中...';
+            sendCodeBtn.disabled = true; sendCodeBtn.textContent = '信件發送中...';
 
             fetch(GAS_WEB_APP_URL, {
                 method: 'POST',
@@ -251,29 +200,52 @@
                 headers: { 'Content-Type': 'text/plain;charset=utf-8' }
             }).then(res => res.json()).then(res => {
                 if(res.status === 'success') {
-                    document.getElementById('verifyEmail').disabled = true;
-                    document.getElementById('registrationForm').style.display = 'block';
+                    verifyEmail.disabled = true;
                     sendCodeBtn.textContent = '✅ 已發送至信箱';
+                    document.getElementById('step2').style.display = 'block'; // 顯示填寫驗證碼區塊
                 } else {
                     showCustomAlert('發送失敗：' + res.message);
-                    sendCodeBtn.disabled = false;
-                    sendCodeBtn.textContent = '重新發送';
+                    sendCodeBtn.disabled = false; sendCodeBtn.textContent = '重新發送';
                 }
             }).catch(err => {
-                showCustomAlert('網路連線或伺服器異常，請確認已將 GAS 部署為「新版本」。');
-                sendCodeBtn.disabled = false;
-                sendCodeBtn.textContent = '重新發送';
-                console.error(err);
+                showCustomAlert('網路連線異常，請稍後重試。');
+                sendCodeBtn.disabled = false; sendCodeBtn.textContent = '重新發送';
             });
         });
 
-        // 送出完整表單
+        // Step 2: 檢查驗證碼 (新加入的功能)
+        checkCodeBtn.addEventListener('click', () => {
+            if(!verifyCodeInput.value) { showCustomAlert('請輸入驗證碼！'); return; }
+            
+            checkCodeBtn.disabled = true; checkCodeBtn.textContent = '比對中...';
+
+            fetch(GAS_WEB_APP_URL, {
+                method: 'POST',
+                body: JSON.stringify({ action: 'verifyCode', email: verifyEmail.value, code: verifyCodeInput.value }),
+                headers: { 'Content-Type': 'text/plain;charset=utf-8' }
+            }).then(res => res.json()).then(res => {
+                if(res.status === 'success') {
+                    verifyCodeInput.disabled = true;
+                    checkCodeBtn.textContent = '✅ 驗證成功';
+                    document.getElementById('registrationForm').style.display = 'block'; // 顯示完整報名表單
+                } else {
+                    showCustomAlert(res.message);
+                    checkCodeBtn.disabled = false; checkCodeBtn.textContent = '確認驗證碼';
+                }
+            }).catch(err => {
+                showCustomAlert('網路連線異常，請稍後重試。');
+                checkCodeBtn.disabled = false; checkCodeBtn.textContent = '確認驗證碼';
+            });
+        });
+
+        // Step 3: 送出完整報名表單
         document.getElementById('registrationForm').addEventListener('submit', function(e) {
             e.preventDefault();
             const submitBtn = document.getElementById('submitFinalBtn');
             submitBtn.disabled = true; submitBtn.textContent = '報名處理中...';
             
-            const data = { action: 'register', email: verifyEmail.value };
+            // 把 Email 和 Code 一起包裝進去送出
+            const data = { action: 'register', email: verifyEmail.value, code: verifyCodeInput.value };
             new FormData(this).forEach((value, key) => { data[key] = value });
 
             fetch(GAS_WEB_APP_URL, {
@@ -283,6 +255,7 @@
             }).then(res => res.json()).then(res => {
                 if(res.status === 'success') {
                     document.getElementById('step1').style.display = 'none';
+                    document.getElementById('step2').style.display = 'none';
                     this.style.display = 'none';
                     document.getElementById('successDisplay').style.display = 'block';
                     document.getElementById('resEmail').textContent = data.email;
