@@ -223,43 +223,62 @@
             </table>
         </div>
 
-        <!-- 區塊三：線上報名 -->
+<!-- 區塊三：線上報名 (修改為分段式) -->
         <div id="registration" class="tab-content">
             <h2 class="section-title">線上報名</h2>
-            <form id="registrationForm">
+            
+            <!-- Step 1: 信箱與機器人驗證 -->
+            <div id="step1">
                 <div class="form-group">
-                    <label for="name">姓名 *</label>
-                    <input type="text" id="name" name="name" required placeholder="請輸入真實姓名">
+                    <label>電子信箱 (Email) *</label>
+                    <input type="email" id="verifyEmail" required placeholder="請輸入您的信箱以接收驗證碼">
                 </div>
+                <div class="form-group" style="background:#f1f5f9; padding:15px; border-radius:5px;">
+                    <label><input type="checkbox" id="notRobot"> 我不是機器人 (請勾選)</label>
+                </div>
+                <button type="button" id="sendCodeBtn" class="submit-btn" disabled>發送驗證碼</button>
+            </div>
+
+            <!-- Step 2: 填寫完整表單 (預設隱藏) -->
+            <form id="registrationForm" style="display:none; margin-top:20px;">
+                <hr style="margin-bottom:20px; border-top:1px dashed #ccc;">
                 <div class="form-group">
-                    <label for="organization">服務單位/學校 *</label>
-                    <input type="text" id="organization" name="organization" required placeholder="例如：國家地震工程研究中心">
+                    <label>6位數驗證碼 *</label>
+                    <input type="text" id="verifyCode" name="code" required placeholder="請查看信箱並輸入驗證碼">
                 </div>
+                <div class="form-group"><label>姓名 *</label><input type="text" name="name" required></div>
+                <div class="form-group"><label>服務單位 *</label><input type="text" name="organization" required></div>
+                <div class="form-group"><label>職稱 *</label><input type="text" name="title" required></div>
+                <div class="form-group"><label>聯絡電話 *</label><input type="tel" name="phone" required></div>
                 <div class="form-group">
-                    <label for="title">職稱 *</label>
-                    <input type="text" id="title" name="title" required placeholder="例如：研究員、工程師">
+                    <label>午餐安排 *</label>
+                    <select name="lunch" style="width: 100%; padding: 12px; border-radius: 6px;">
+                        <option value="葷食">葷食</option>
+                        <option value="素食">素食</option>
+                        <option value="不用餐">不用餐</option>
+                    </select>
                 </div>
-                <div class="form-group">
-                    <label for="email">電子信箱 (Email) *</label>
-                    <input type="email" id="email" name="email" required placeholder="請確保填寫正確，以利接收報到 QR Code">
-                </div>
-                <div class="form-group">
-                    <label for="phone">聯絡電話 *</label>
-                    <input type="tel" id="phone" name="phone" required placeholder="09XX-XXX-XXX">
-                </div>
-                <button type="submit" id="submitBtn" class="submit-btn">確認送出報名</button>
+                <button type="submit" id="submitFinalBtn" class="submit-btn">確認送出報名</button>
             </form>
+
+            <!-- Step 3: 成功畫面 -->
+            <div id="successDisplay" style="display:none; text-align:center; padding:20px;">
+                <h2 style="color:#166534;">🎉 報名成功！</h2>
+                <div style="background:#f8fafc; padding:20px; text-align:left; border-radius:8px; margin:20px 0;">
+                    <p><strong>信箱：</strong><span id="resEmail"></span></p>
+                    <p><strong>姓名：</strong><span id="resName"></span></p>
+                    <p><strong>單位：</strong><span id="resOrg"></span></p>
+                    <p><strong>餐點：</strong><span id="resLunch"></span></p>
+                </div>
+                <p>若有任何疑問，請來信洽詢：<br>chi-ting.weng@cwa.gov.tw (翁先生)</p>
+            </div>
             <div id="message-box"></div>
         </div>
     </div>
 
-    <!-- 頁尾區塊 -->
-    <footer>
-        主辦單位：交通部中央氣象署-地震測報中心
-    </footer>
-
+    <!-- 頁尾與 Script -->
+    <footer>主辦單位：交通部中央氣象署-地震測報中心</footer>
     <script>
-        // 頁籤切換邏輯
         function openTab(tabId) {
             document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
             document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
@@ -267,53 +286,67 @@
             event.currentTarget.classList.add('active');
         }
 
-        // 表單送出邏輯
-        const form = document.getElementById('registrationForm');
-        const submitBtn = document.getElementById('submitBtn');
-        const messageBox = document.getElementById('message-box');
         const GAS_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbwyFs9I2P3Wr03ui3zDcgB1HPeanB6DTJhe4zoQkO1fORHjwsefQ049jSC650kVu8Q7/exec'; 
+        const notRobot = document.getElementById('notRobot');
+        const sendCodeBtn = document.getElementById('sendCodeBtn');
+        const verifyEmail = document.getElementById('verifyEmail');
+        const msgBox = document.getElementById('message-box');
+        
+        // 機器人驗證解鎖按鈕
+        notRobot.addEventListener('change', () => {
+            sendCodeBtn.disabled = !notRobot.checked;
+        });
 
-        form.addEventListener('submit', function(e) {
-            e.preventDefault(); 
+        // 發送驗證碼
+        sendCodeBtn.addEventListener('click', () => {
+            if(!verifyEmail.value.includes('@')) { alert('請輸入有效的信箱'); return; }
+            sendCodeBtn.disabled = true;
+            sendCodeBtn.textContent = '驗證碼發送中...';
             
-            // 按下按鈕後的 UI 變化
-            submitBtn.disabled = true;
-            submitBtn.textContent = '資料傳送與產製 QR Code 中...';
-            messageBox.className = 'loading';
-            messageBox.textContent = '系統處理中，請稍候...';
-            messageBox.style.display = 'block';
+            fetch(GAS_WEB_APP_URL, {
+                method: 'POST',
+                body: JSON.stringify({ action: 'sendCode', email: verifyEmail.value }),
+                headers: { 'Content-Type': 'text/plain;charset=utf-8' }
+            }).then(res => res.json()).then(res => {
+                if(res.status === 'success') {
+                    document.getElementById('verifyEmail').disabled = true;
+                    document.getElementById('registrationForm').style.display = 'block';
+                    sendCodeBtn.textContent = '已發送至信箱';
+                    msgBox.style.display = 'none';
+                } else {
+                    alert(res.message);
+                    sendCodeBtn.disabled = false;
+                    sendCodeBtn.textContent = '重新發送';
+                }
+            });
+        });
 
-            // 收集表單資料
-            const formData = new FormData(form);
-            const data = {};
-            formData.forEach((value, key) => { data[key] = value });
+        // 送出完整表單
+        document.getElementById('registrationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const submitBtn = document.getElementById('submitFinalBtn');
+            submitBtn.disabled = true; submitBtn.textContent = '報名處理中...';
+            
+            const data = { action: 'register', email: verifyEmail.value };
+            new FormData(this).forEach((value, key) => { data[key] = value });
 
-            // 透過 Fetch API 傳送資料到 Google Apps Script
             fetch(GAS_WEB_APP_URL, {
                 method: 'POST',
                 body: JSON.stringify(data),
                 headers: { 'Content-Type': 'text/plain;charset=utf-8' }
-            })
-            .then(response => response.json())
-            .then(result => {
-                if (result.status === 'success') {
-                    messageBox.className = 'success';
-                    messageBox.textContent = '🎉 報名成功！報到 QR Code 已寄至您的信箱，請查收。';
-                    form.reset(); // 清空表單
+            }).then(res => res.json()).then(res => {
+                if(res.status === 'success') {
+                    document.getElementById('step1').style.display = 'none';
+                    this.style.display = 'none';
+                    document.getElementById('successDisplay').style.display = 'block';
+                    document.getElementById('resEmail').textContent = data.email;
+                    document.getElementById('resName').textContent = data.name;
+                    document.getElementById('resOrg').textContent = data.organization;
+                    document.getElementById('resLunch').textContent = data.lunch;
                 } else {
-                    messageBox.className = 'error';
-                    messageBox.textContent = '❌ 報名失敗，請稍後再試。原因：' + result.message;
+                    alert(res.message);
+                    submitBtn.disabled = false; submitBtn.textContent = '確認送出報名';
                 }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                messageBox.className = 'error';
-                messageBox.textContent = '⚠️ 網路連線異常，請確認網路狀態後重試！';
-            })
-            .finally(() => {
-                // 無論成功或失敗，都把按鈕恢復原狀
-                submitBtn.disabled = false;
-                submitBtn.textContent = '確認送出報名';
             });
         });
     </script>
