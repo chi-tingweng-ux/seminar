@@ -226,7 +226,6 @@
             document.getElementById('customAlert').style.display = 'flex';
         }
 
-        // ★★★ 請替換成您的 GAS 部署網址 ★★★
         const GAS_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbwyFs9I2P3Wr03ui3zDcgB1HPeanB6DTJhe4zoQkO1fORHjwsefQ049jSC650kVu8Q7/exec'; 
         const notRobot = document.getElementById('notRobot');
         const sendCodeBtn = document.getElementById('sendCodeBtn');
@@ -234,25 +233,15 @@
         
         // 發送驗證碼
         sendCodeBtn.addEventListener('click', () => {
-            // 1. 新增檢查：是否勾選我不是機器人
             if (!notRobot.checked) { 
                 showCustomAlert('為了系統安全，請先勾選「我不是機器人」！'); 
                 return; 
             }
-            // 2. 檢查：信箱格式
             if(!verifyEmail.value.includes('@')) { 
                 showCustomAlert('請輸入有效的信箱格式！'); 
                 return; 
             }
             
-            sendCodeBtn.disabled = true;
-            sendCodeBtn.textContent = '驗證碼發送中...';
-
-            // ... (下方的 fetch 程式碼保持不變) ...
-
-        // 發送驗證碼
-        sendCodeBtn.addEventListener('click', () => {
-            if(!verifyEmail.value.includes('@')) { showCustomAlert('請輸入有效的信箱格式！'); return; }
             sendCodeBtn.disabled = true;
             sendCodeBtn.textContent = '驗證碼發送中...';
 
