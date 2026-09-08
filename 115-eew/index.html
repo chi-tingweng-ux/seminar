@@ -12,7 +12,7 @@
 
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, '微軟正黑體', sans-serif; margin: 0; padding: 0; color: var(--text-main); background-color: var(--bg-color); line-height: 1.6; display: flex; flex-direction: column; min-height: 100vh; }
         
-        /* 💡 加大標頭上下 Padding 展現更多背景，毛玻璃框設定 */
+        /* 標頭背景設定 */
         header { 
             background-image: url('EEW_bg_top.jpg'); 
             background-size: cover;
@@ -27,64 +27,65 @@
             align-items: center;
         }
 
+        /* 💡 優化：真實毛玻璃質感，大幅降低白底濃度、縮小框框 */
         .header-content {
-            background: rgba(255, 255, 255, 0.7); /* 更透明一點 */
-            padding: 20px 40px; /* 稍微縮小框框 */
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 255, 255, 0.5);
+            background: rgba(255, 255, 255, 0.25); /* 降至 25% 的極透明白底 */
+            padding: 15px 35px; /* 縮小內距讓框框變小 */
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(12px); /* 加強模糊度 */
+            -webkit-backdrop-filter: blur(12px); /* 支援蘋果設備 */
+            border: 1px solid rgba(255, 255, 255, 0.4);
             display: inline-block;
             max-width: 90%;
         }
         
-        header h1 { margin: 0; font-size: 2.6em; color: #0c4a6e; font-weight: 900; letter-spacing: 2px; text-shadow: 1px 1px 2px rgba(255,255,255,0.8); line-height: 1.4; }
-        header p { font-size: 1.3em; color: #334155; margin-top: 15px; margin-bottom: 0; font-weight: bold; letter-spacing: 1px; }
+        header h1 { margin: 0; font-size: 2.6em; color: #0c4a6e; font-weight: 900; letter-spacing: 2px; text-shadow: 0px 0px 8px rgba(255,255,255,0.9), 1px 1px 2px rgba(255,255,255,0.8); line-height: 1.4; }
+        header p { font-size: 1.3em; color: #1e293b; margin-top: 10px; margin-bottom: 0; font-weight: bold; letter-spacing: 1px; text-shadow: 0px 0px 5px rgba(255,255,255,0.8); }
 
-        /* 💡 拓寬網頁容器 */
-        .container { max-width: 1000px; margin: 30px auto; padding: 0 20px; flex: 1; }
+        /* 💡 優化：放寬網頁容器，解決議程太窄的問題 */
+        .container { max-width: 1200px; width: 95%; margin: 40px auto; padding: 0 15px; flex: 1; }
 
-        .tabs { display: flex; justify-content: center; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
-        .tab-btn { background-color: var(--card-bg); border: 2px solid var(--light-blue); color: var(--primary-blue); padding: 12px 25px; font-size: 1.1em; font-weight: bold; border-radius: 8px; cursor: pointer; transition: all 0.3s; }
+        .tabs { display: flex; justify-content: center; gap: 10px; margin-bottom: 25px; flex-wrap: wrap; }
+        .tab-btn { background-color: var(--card-bg); border: 2px solid var(--light-blue); color: var(--primary-blue); padding: 12px 30px; font-size: 1.15em; font-weight: bold; border-radius: 8px; cursor: pointer; transition: all 0.3s; }
         .tab-btn:hover { background-color: var(--light-blue); }
-        .tab-btn.active { background-color: var(--primary-blue); color: white; border-color: var(--primary-blue); }
+        .tab-btn.active { background-color: var(--primary-blue); color: white; border-color: var(--primary-blue); box-shadow: 0 4px 10px rgba(2, 132, 199, 0.2); }
 
-        .tab-content { display: none; background: var(--card-bg); padding: 35px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-top: 4px solid var(--primary-blue); }
+        .tab-content { display: none; background: var(--card-bg); padding: 40px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-top: 4px solid var(--primary-blue); }
         .tab-content.active { display: block; animation: fadeIn 0.4s ease-in-out; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        .section-title { color: var(--primary-blue); border-bottom: 2px solid var(--light-blue); padding-bottom: 10px; margin-top: 0; font-size: 1.4em; }
+        .section-title { color: var(--primary-blue); border-bottom: 2px solid var(--light-blue); padding-bottom: 10px; margin-top: 0; font-size: 1.5em; }
         .info-list { list-style: none; padding: 0; }
-        .info-list li { margin-bottom: 15px; display: flex; font-size: 1.1em; border-bottom: 1px dashed #e2e8f0; padding-bottom: 10px; }
-        .info-list span.label { font-weight: bold; color: var(--primary-blue); width: 100px; flex-shrink: 0; }
+        .info-list li { margin-bottom: 15px; display: flex; font-size: 1.15em; border-bottom: 1px dashed #e2e8f0; padding-bottom: 12px; }
+        .info-list span.label { font-weight: bold; color: var(--primary-blue); width: 110px; flex-shrink: 0; }
 
-        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
-        th, td { padding: 12px; text-align: center; border: 1px solid #e2e8f0; }
+        table { width: 100%; border-collapse: collapse; margin-top: 15px; font-size: 1.1em; }
+        th, td { padding: 15px; text-align: center; border: 1px solid #e2e8f0; }
         th { background-color: var(--light-blue); color: var(--primary-blue); font-weight: bold; }
-        
-        /* 💡 強制讓時間欄位不換行，解決窄邊問題 */
-        table th:first-child, table td:first-child { white-space: nowrap; width: 20%; }
+        table th:first-child, table td:first-child { white-space: nowrap; width: 25%; }
         .table-section-title { background-color: #fff7ed; color: var(--accent-orange); font-weight: bold; text-align: center; }
 
         .form-group { margin-bottom: 20px; }
-        label { display: block; margin-bottom: 8px; font-weight: bold; color: var(--text-main); }
-        input[type="text"], input[type="email"], input[type="tel"], select { width: 100%; padding: 12px; border: 1px solid #cbd5e1; border-radius: 6px; box-sizing: border-box; font-size: 1em; }
+        label { display: block; margin-bottom: 8px; font-weight: bold; color: var(--text-main); font-size: 1.05em; }
+        input[type="text"], input[type="email"], input[type="tel"], select { width: 100%; padding: 14px; border: 1px solid #cbd5e1; border-radius: 6px; box-sizing: border-box; font-size: 1.05em; }
         input:focus, select:focus { border-color: var(--primary-blue); outline: none; box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.2); }
         
-        button.submit-btn { background-color: var(--accent-orange); color: white; border: none; padding: 15px 30px; font-size: 1.2em; border-radius: 6px; cursor: pointer; width: 100%; font-weight: bold; transition: all 0.3s; }
+        button.submit-btn { background-color: var(--accent-orange); color: white; border: none; padding: 16px 30px; font-size: 1.2em; border-radius: 6px; cursor: pointer; width: 100%; font-weight: bold; transition: all 0.3s; letter-spacing: 1px; }
         button.submit-btn:hover { background-color: #ea580c; }
         button.submit-btn:disabled { background-color: #cbd5e1; cursor: not-allowed; }
 
         footer { background-color: #1a1a1a; color: #ffffff; text-align: center; padding: 60px 20px; margin-top: 50px; font-size: 1.1em; letter-spacing: 2px; }
 
-        .custom-alert-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000; justify-content: center; align-items: center; }
-        .custom-alert-box { background: white; padding: 20px 30px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); text-align: center; max-width: 400px; width: 90%; }
-        .custom-alert-box h3 { color: #f97316; margin-top: 0; border-bottom: 2px solid #eee; padding-bottom: 10px;}
-        .custom-alert-btn { background: #0284c7; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; margin-top: 15px; font-weight: bold; }
+        .custom-alert-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 1000; justify-content: center; align-items: center; }
+        .custom-alert-box { background: white; padding: 25px 35px; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.2); text-align: center; max-width: 400px; width: 90%; }
+        .custom-alert-box h3 { color: #f97316; margin-top: 0; border-bottom: 2px solid #f1f5f9; padding-bottom: 12px; font-size: 1.3em;}
+        .custom-alert-btn { background: #0284c7; color: white; border: none; padding: 12px 25px; border-radius: 6px; cursor: pointer; margin-top: 18px; font-weight: bold; font-size: 1.1em; }
 
-        @media (max-width: 600px) {
+        @media (max-width: 768px) {
             header h1 { font-size: 1.8em; }
             .header-content { padding: 20px; }
+            .tab-content { padding: 20px; }
         }
     </style>
 </head>
@@ -109,7 +110,7 @@
             <ul class="info-list">
                 <li><span class="label">活動日期</span><span>115年 11月 24日 (週二) 14:00 - 17:00</span></li>
                 <li><span class="label">活動地點</span><span>中央氣象署 3樓 310會議室<br>(臺北市中正區公園路64號)</span></li>
-                <li><span class="label">主辦單位</span><span>交通部中央氣象署-地震測報中心</span></li>
+                <li><span class="label">主辦單位</span><span>地震測報中心、健行科技大學</span></li>
                 <li><span class="label">注意事項</span><span>報名成功後，系統將自動發送「報到 QR Code」至您的信箱，憑信件掃描入場。</span></li>
             </ul>
         </div>
@@ -135,7 +136,7 @@
 
         <div id="registration" class="tab-content">
             <h2 class="section-title">線上報名</h2>
-            <p style="color: #0284c7; background-color: #e0f2fe; padding: 12px; border-radius: 6px; font-size: 0.95em; font-weight: bold; margin-bottom: 20px;">
+            <p style="color: #0284c7; background-color: #e0f2fe; padding: 15px; border-radius: 8px; font-size: 1.05em; font-weight: bold; margin-bottom: 25px;">
                 💡 為了確保報名後能正確收到 QR Code，請先驗證 Email 信箱。驗證成功後即可填寫完整報名資訊。
             </p>
             
@@ -150,18 +151,17 @@
                 <button type="button" id="sendCodeBtn" class="submit-btn">發送驗證碼</button>
             </div>
 
-            <div id="step2" style="display:none; margin-top:20px;">
-                <hr style="margin-bottom:20px; border-top:1px dashed #ccc;">
+            <div id="step2" style="display:none; margin-top:25px;">
+                <hr style="margin-bottom:25px; border-top:1px dashed #cbd5e1;">
                 <div class="form-group">
                     <label>6位數驗證碼 *</label>
-                    <input type="text" id="verifyCode" required placeholder="請查看信箱並輸入驗證碼" style="letter-spacing: 2px; text-align: center; font-size: 1.2em;">
+                    <input type="text" id="verifyCode" required placeholder="請查看信箱並輸入驗證碼" style="letter-spacing: 3px; text-align: center; font-size: 1.3em;">
                 </div>
                 <button type="button" id="checkCodeBtn" class="submit-btn" style="background-color: #0284c7;">確認驗證碼</button>
             </div>
 
-            <!-- 💡 移除了午餐欄位 -->
-            <form id="registrationForm" style="display:none; margin-top:20px;">
-                <hr style="margin-bottom:20px; border-top:1px dashed #ccc;">
+            <form id="registrationForm" style="display:none; margin-top:25px;">
+                <hr style="margin-bottom:25px; border-top:1px dashed #cbd5e1;">
                 <div class="form-group"><label>姓名 *</label><input type="text" name="name" required></div>
                 <div class="form-group"><label>服務單位 *</label><input type="text" name="organization" required></div>
                 <div class="form-group"><label>職稱 *</label><input type="text" name="title" required></div>
@@ -170,13 +170,13 @@
             </form>
 
             <div id="successDisplay" style="display:none; text-align:center; padding:20px;">
-                <h2 style="color:#166534;">🎉 報名成功！</h2>
-                <div style="background:#f8fafc; padding:20px; text-align:left; border-radius:8px; margin:20px 0;">
-                    <p><strong>信箱：</strong><span id="resEmail"></span></p>
-                    <p><strong>姓名：</strong><span id="resName"></span></p>
-                    <p><strong>單位：</strong><span id="resOrg"></span></p>
+                <h2 style="color:#166534; font-size:2em;">🎉 報名成功！</h2>
+                <div style="background:#f8fafc; padding:25px; text-align:left; border-radius:12px; margin:25px 0; border: 1px solid #e2e8f0; font-size:1.1em;">
+                    <p style="margin: 10px 0;"><strong>信箱：</strong><span id="resEmail"></span></p>
+                    <p style="margin: 10px 0;"><strong>姓名：</strong><span id="resName"></span></p>
+                    <p style="margin: 10px 0;"><strong>單位：</strong><span id="resOrg"></span></p>
                 </div>
-                <p>若有任何疑問，請來信洽詢：<br>chi-ting.weng@cwa.gov.tw (翁先生)</p>
+                <p style="font-size:1.1em;">若有任何疑問，請來信洽詢：<br><a href="mailto:chi-ting.weng@cwa.gov.tw" style="color:#0284c7; font-weight:bold;">chi-ting.weng@cwa.gov.tw</a> (翁先生)</p>
             </div>
         </div>
     </div>
@@ -186,7 +186,7 @@
     <div id="customAlert" class="custom-alert-overlay">
         <div class="custom-alert-box">
             <h3>系統管理員 說：</h3>
-            <p id="customAlertMessage">訊息內容</p>
+            <p id="customAlertMessage" style="font-size:1.1em; color:#333;">訊息內容</p>
             <button class="custom-alert-btn" onclick="document.getElementById('customAlert').style.display='none'">確定</button>
         </div>
     </div>
@@ -204,7 +204,6 @@
             document.getElementById('customAlert').style.display = 'flex';
         }
 
-        // ★★★ 請確認是否為您最新的 GAS 網址 ★★★
         const GAS_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbwyFs9I2P3Wr03ui3zDcgB1HPeanB6DTJhe4zoQkO1fORHjwsefQ049jSC650kVu8Q7/exec'; 
 
         const notRobot = document.getElementById('notRobot');
