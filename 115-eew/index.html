@@ -11,34 +11,56 @@
         }
 
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, '微軟正黑體', sans-serif; margin: 0; padding: 0; color: var(--text-main); background-color: var(--bg-color); line-height: 1.6; display: flex; flex-direction: column; min-height: 100vh; }
-        header { 
-            /* 設定背景圖片，並讓它自動填滿覆蓋 */
+       header { 
             background-image: url('EEW_bg_top.jpg'); 
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            /* 加大上下 padding，讓圖片能顯示得更寬廣 */
-            padding: 100px 20px 80px; 
+            padding: 80px 20px; 
             text-align: center; 
             border-bottom: 4px solid var(--primary-blue); 
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
+            /* 讓內部的毛玻璃框置中 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* 新增：文字專用的毛玻璃半透明底框 */
+        .header-content {
+            background: rgba(255, 255, 255, 0.85); /* 85%不透明的白底 */
+            padding: 25px 50px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            backdrop-filter: blur(8px); /* 毛玻璃模糊效果 */
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            display: inline-block;
+            max-width: 90%;
         }
         
         header h1 { 
             margin: 0; 
-            font-size: 2.6em; 
-            color: var(--primary-blue); 
-            /* 加入強烈的白色光暈，確保文字在複雜背景上依然清晰易讀 */
-            text-shadow: 2px 2px 8px rgba(255,255,255,0.9), -2px -2px 8px rgba(255,255,255,0.9), 2px -2px 8px rgba(255,255,255,0.9), -2px 2px 8px rgba(255,255,255,0.9), 0 0 15px rgba(255,255,255,1);
+            font-size: 2.8em; /* 再放大一點 */
+            color: #0c4a6e; /* 改用極深的科技藍，對比度最高 */
+            font-weight: 900; /* 字體加到最粗 */
+            letter-spacing: 2px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+            line-height: 1.4;
         }
         
         header p { 
             font-size: 1.3em; 
-            color: #0f172a; 
-            margin-top: 10px; 
+            color: #475569; /* 次要文字改為深灰藍色 */
+            margin-top: 15px; 
+            margin-bottom: 0;
             font-weight: bold;
-            /* 同樣為副標題加上白色光暈 */
-            text-shadow: 1px 1px 5px rgba(255,255,255,0.9), -1px -1px 5px rgba(255,255,255,0.9);
+            letter-spacing: 1px;
+        }
+
+        /* 手機版字體微調，避免跑版 */
+        @media (max-width: 600px) {
+            header h1 { font-size: 1.8em; }
+            .header-content { padding: 20px; }
         }
         .container { max-width: 900px; margin: 30px auto; padding: 0 20px; flex: 1; }
 
@@ -81,8 +103,10 @@
 <body>
 
     <header>
-        <h1>115年合作推動地震資訊傳遞服務<br>成果交流會</h1>
-        <p>Earthquake Information Delivery Service Seminar</p>
+        <div class="header-content">
+            <h1>115年合作推動地震資訊傳遞服務<br>成果交流會</h1>
+            <p>Earthquake Information Delivery Service Seminar</p>
+        </div>
     </header>
 
     <div class="container">
