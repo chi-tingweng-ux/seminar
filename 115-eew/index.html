@@ -11,58 +11,38 @@
         }
 
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, '微軟正黑體', sans-serif; margin: 0; padding: 0; color: var(--text-main); background-color: var(--bg-color); line-height: 1.6; display: flex; flex-direction: column; min-height: 100vh; }
-       header { 
+        
+        /* 💡 加大標頭上下 Padding 展現更多背景，毛玻璃框設定 */
+        header { 
             background-image: url('EEW_bg_top.jpg'); 
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            padding: 80px 20px; 
+            padding: 120px 20px; 
             text-align: center; 
             border-bottom: 4px solid var(--primary-blue); 
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
-            /* 讓內部的毛玻璃框置中 */
             display: flex;
             justify-content: center;
             align-items: center;
         }
 
-        /* 新增：文字專用的毛玻璃半透明底框 */
         .header-content {
-            background: rgba(255, 255, 255, 0.85); /* 85%不透明的白底 */
-            padding: 25px 50px;
+            background: rgba(255, 255, 255, 0.7); /* 更透明一點 */
+            padding: 20px 40px; /* 稍微縮小框框 */
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-            backdrop-filter: blur(8px); /* 毛玻璃模糊效果 */
-            border: 1px solid rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
             display: inline-block;
             max-width: 90%;
         }
         
-        header h1 { 
-            margin: 0; 
-            font-size: 2.8em; /* 再放大一點 */
-            color: #0c4a6e; /* 改用極深的科技藍，對比度最高 */
-            font-weight: 900; /* 字體加到最粗 */
-            letter-spacing: 2px;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
-            line-height: 1.4;
-        }
-        
-        header p { 
-            font-size: 1.3em; 
-            color: #475569; /* 次要文字改為深灰藍色 */
-            margin-top: 15px; 
-            margin-bottom: 0;
-            font-weight: bold;
-            letter-spacing: 1px;
-        }
+        header h1 { margin: 0; font-size: 2.6em; color: #0c4a6e; font-weight: 900; letter-spacing: 2px; text-shadow: 1px 1px 2px rgba(255,255,255,0.8); line-height: 1.4; }
+        header p { font-size: 1.3em; color: #334155; margin-top: 15px; margin-bottom: 0; font-weight: bold; letter-spacing: 1px; }
 
-        /* 手機版字體微調，避免跑版 */
-        @media (max-width: 600px) {
-            header h1 { font-size: 1.8em; }
-            .header-content { padding: 20px; }
-        }
-        .container { max-width: 900px; margin: 30px auto; padding: 0 20px; flex: 1; }
+        /* 💡 拓寬網頁容器 */
+        .container { max-width: 1000px; margin: 30px auto; padding: 0 20px; flex: 1; }
 
         .tabs { display: flex; justify-content: center; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
         .tab-btn { background-color: var(--card-bg); border: 2px solid var(--light-blue); color: var(--primary-blue); padding: 12px 25px; font-size: 1.1em; font-weight: bold; border-radius: 8px; cursor: pointer; transition: all 0.3s; }
@@ -81,6 +61,9 @@
         table { width: 100%; border-collapse: collapse; margin-top: 10px; }
         th, td { padding: 12px; text-align: center; border: 1px solid #e2e8f0; }
         th { background-color: var(--light-blue); color: var(--primary-blue); font-weight: bold; }
+        
+        /* 💡 強制讓時間欄位不換行，解決窄邊問題 */
+        table th:first-child, table td:first-child { white-space: nowrap; width: 20%; }
         .table-section-title { background-color: #fff7ed; color: var(--accent-orange); font-weight: bold; text-align: center; }
 
         .form-group { margin-bottom: 20px; }
@@ -98,6 +81,11 @@
         .custom-alert-box { background: white; padding: 20px 30px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); text-align: center; max-width: 400px; width: 90%; }
         .custom-alert-box h3 { color: #f97316; margin-top: 0; border-bottom: 2px solid #eee; padding-bottom: 10px;}
         .custom-alert-btn { background: #0284c7; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; margin-top: 15px; font-weight: bold; }
+
+        @media (max-width: 600px) {
+            header h1 { font-size: 1.8em; }
+            .header-content { padding: 20px; }
+        }
     </style>
 </head>
 <body>
@@ -121,7 +109,7 @@
             <ul class="info-list">
                 <li><span class="label">活動日期</span><span>115年 11月 24日 (週二) 14:00 - 17:00</span></li>
                 <li><span class="label">活動地點</span><span>中央氣象署 3樓 310會議室<br>(臺北市中正區公園路64號)</span></li>
-                <li><span class="label">主辦單位</span><span>交通部中鄉氣象署-地震測報中心</span></li>
+                <li><span class="label">主辦單位</span><span>交通部中央氣象署-地震測報中心</span></li>
                 <li><span class="label">注意事項</span><span>報名成功後，系統將自動發送「報到 QR Code」至您的信箱，憑信件掃描入場。</span></li>
             </ul>
         </div>
@@ -129,7 +117,7 @@
         <div id="agenda" class="tab-content">
             <h2 class="section-title">活動流程</h2>
             <table>
-                <thead><tr><th width="30%">時間</th><th width="70%">流程</th></tr></thead>
+                <thead><tr><th>時間</th><th>流程</th></tr></thead>
                 <tbody>
                     <tr><td>13:00 ~ 13:40</td><td>報到 Registration</td></tr>
                     <tr><td rowspan="2">13:40 ~ 13:55</td><td>開幕 Opening Ceremony<br><span style="font-size:0.9em; color:var(--text-muted);">主席致詞：地震測報中心 吳健富主任</span></td></tr>
@@ -151,7 +139,6 @@
                 💡 為了確保報名後能正確收到 QR Code，請先驗證 Email 信箱。驗證成功後即可填寫完整報名資訊。
             </p>
             
-            <!-- Step 1: 發送 Email 驗證碼 -->
             <div id="step1">
                 <div class="form-group">
                     <label>電子信箱 (Email) *</label>
@@ -163,7 +150,6 @@
                 <button type="button" id="sendCodeBtn" class="submit-btn">發送驗證碼</button>
             </div>
 
-            <!-- Step 2: 填寫並比對驗證碼 (預設隱藏) -->
             <div id="step2" style="display:none; margin-top:20px;">
                 <hr style="margin-bottom:20px; border-top:1px dashed #ccc;">
                 <div class="form-group">
@@ -173,32 +159,22 @@
                 <button type="button" id="checkCodeBtn" class="submit-btn" style="background-color: #0284c7;">確認驗證碼</button>
             </div>
 
-            <!-- Step 3: 填寫完整報名表單 (預設隱藏) -->
+            <!-- 💡 移除了午餐欄位 -->
             <form id="registrationForm" style="display:none; margin-top:20px;">
                 <hr style="margin-bottom:20px; border-top:1px dashed #ccc;">
                 <div class="form-group"><label>姓名 *</label><input type="text" name="name" required></div>
                 <div class="form-group"><label>服務單位 *</label><input type="text" name="organization" required></div>
                 <div class="form-group"><label>職稱 *</label><input type="text" name="title" required></div>
                 <div class="form-group"><label>聯絡電話 *</label><input type="tel" name="phone" required></div>
-                <div class="form-group">
-                    <label>午餐安排 *</label>
-                    <select name="lunch">
-                        <option value="葷食">葷食</option>
-                        <option value="素食">素食</option>
-                        <option value="不用餐">不用餐</option>
-                    </select>
-                </div>
                 <button type="submit" id="submitFinalBtn" class="submit-btn">確認送出報名</button>
             </form>
 
-            <!-- Step 4: 成功畫面 -->
             <div id="successDisplay" style="display:none; text-align:center; padding:20px;">
                 <h2 style="color:#166534;">🎉 報名成功！</h2>
                 <div style="background:#f8fafc; padding:20px; text-align:left; border-radius:8px; margin:20px 0;">
                     <p><strong>信箱：</strong><span id="resEmail"></span></p>
                     <p><strong>姓名：</strong><span id="resName"></span></p>
                     <p><strong>單位：</strong><span id="resOrg"></span></p>
-                    <p><strong>餐點：</strong><span id="resLunch"></span></p>
                 </div>
                 <p>若有任何疑問，請來信洽詢：<br>chi-ting.weng@cwa.gov.tw (翁先生)</p>
             </div>
@@ -228,7 +204,7 @@
             document.getElementById('customAlert').style.display = 'flex';
         }
 
-        // ★★★ 請替換為您最新的 GAS 網址 ★★★
+        // ★★★ 請確認是否為您最新的 GAS 網址 ★★★
         const GAS_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbwyFs9I2P3Wr03ui3zDcgB1HPeanB6DTJhe4zoQkO1fORHjwsefQ049jSC650kVu8Q7/exec'; 
 
         const notRobot = document.getElementById('notRobot');
@@ -237,7 +213,6 @@
         const checkCodeBtn = document.getElementById('checkCodeBtn');
         const verifyCodeInput = document.getElementById('verifyCode');
         
-        // Step 1: 發送驗證碼
         sendCodeBtn.addEventListener('click', () => {
             if (!notRobot.checked) { showCustomAlert('為了系統安全，請先勾選「我不是機器人」！'); return; }
             if(!verifyEmail.value.includes('@')) { showCustomAlert('請輸入有效的信箱格式！'); return; }
@@ -252,7 +227,7 @@
                 if(res.status === 'success') {
                     verifyEmail.disabled = true;
                     sendCodeBtn.textContent = '✅ 已發送至信箱';
-                    document.getElementById('step2').style.display = 'block'; // 顯示填寫驗證碼區塊
+                    document.getElementById('step2').style.display = 'block';
                 } else {
                     showCustomAlert('發送失敗：' + res.message);
                     sendCodeBtn.disabled = false; sendCodeBtn.textContent = '重新發送';
@@ -263,7 +238,6 @@
             });
         });
 
-        // Step 2: 檢查驗證碼 (新加入的功能)
         checkCodeBtn.addEventListener('click', () => {
             if(!verifyCodeInput.value) { showCustomAlert('請輸入驗證碼！'); return; }
             
@@ -277,7 +251,7 @@
                 if(res.status === 'success') {
                     verifyCodeInput.disabled = true;
                     checkCodeBtn.textContent = '✅ 驗證成功';
-                    document.getElementById('registrationForm').style.display = 'block'; // 顯示完整報名表單
+                    document.getElementById('registrationForm').style.display = 'block';
                 } else {
                     showCustomAlert(res.message);
                     checkCodeBtn.disabled = false; checkCodeBtn.textContent = '確認驗證碼';
@@ -288,13 +262,11 @@
             });
         });
 
-        // Step 3: 送出完整報名表單
         document.getElementById('registrationForm').addEventListener('submit', function(e) {
             e.preventDefault();
             const submitBtn = document.getElementById('submitFinalBtn');
             submitBtn.disabled = true; submitBtn.textContent = '報名處理中...';
             
-            // 把 Email 和 Code 一起包裝進去送出
             const data = { action: 'register', email: verifyEmail.value, code: verifyCodeInput.value };
             new FormData(this).forEach((value, key) => { data[key] = value });
 
@@ -311,7 +283,6 @@
                     document.getElementById('resEmail').textContent = data.email;
                     document.getElementById('resName').textContent = data.name;
                     document.getElementById('resOrg').textContent = data.organization;
-                    document.getElementById('resLunch').textContent = data.lunch;
                 } else {
                     showCustomAlert('報名失敗：' + res.message);
                     submitBtn.disabled = false; submitBtn.textContent = '確認送出報名';
