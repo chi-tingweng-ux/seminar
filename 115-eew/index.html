@@ -163,7 +163,7 @@
                 <div class="form-group" style="background:#f1f5f9; padding:15px; border-radius:5px;">
                     <label style="margin-bottom:0;"><input type="checkbox" id="notRobot"> 我不是機器人 (請勾選)</label>
                 </div>
-                <button type="button" id="sendCodeBtn" class="submit-btn" disabled>發送驗證碼</button>
+                <button type="button" id="sendCodeBtn" class="submit-btn">發送驗證碼</button>
             </div>
 
             <!-- Step 2: 填寫完整表單 -->
@@ -232,9 +232,23 @@
         const sendCodeBtn = document.getElementById('sendCodeBtn');
         const verifyEmail = document.getElementById('verifyEmail');
         
-        notRobot.addEventListener('change', () => {
-            sendCodeBtn.disabled = !notRobot.checked;
-        });
+        // 發送驗證碼
+        sendCodeBtn.addEventListener('click', () => {
+            // 1. 新增檢查：是否勾選我不是機器人
+            if (!notRobot.checked) { 
+                showCustomAlert('為了系統安全，請先勾選「我不是機器人」！'); 
+                return; 
+            }
+            // 2. 檢查：信箱格式
+            if(!verifyEmail.value.includes('@')) { 
+                showCustomAlert('請輸入有效的信箱格式！'); 
+                return; 
+            }
+            
+            sendCodeBtn.disabled = true;
+            sendCodeBtn.textContent = '驗證碼發送中...';
+
+            // ... (下方的 fetch 程式碼保持不變) ...
 
         // 發送驗證碼
         sendCodeBtn.addEventListener('click', () => {
