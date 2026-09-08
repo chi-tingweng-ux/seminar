@@ -226,6 +226,9 @@
 <!-- 區塊三：線上報名 (修改為分段式) -->
         <div id="registration" class="tab-content">
             <h2 class="section-title">線上報名</h2>
+            <p style="color: #0284c7; background-color: #e0f2fe; padding: 12px; border-radius: 6px; font-size: 0.95em; font-weight: bold; margin-bottom: 20px;">
+    💡 為了確保報名後能正確收到 QR Code 報到信件，請先驗證您的 Email 信箱，驗證成功後即可填寫完整報名資訊。
+</p>
             
             <!-- Step 1: 信箱與機器人驗證 -->
             <div id="step1">
@@ -303,23 +306,35 @@
             sendCodeBtn.disabled = true;
             sendCodeBtn.textContent = '驗證碼發送中...';
             
-            fetch(GAS_WEB_APP_URL, {
-                method: 'POST',
-                body: JSON.stringify({ action: 'sendCode', email: verifyEmail.value }),
-                headers: { 'Content-Type': 'text/plain;charset=utf-8' }
-            }).then(res => res.json()).then(res => {
-                if(res.status === 'success') {
-                    document.getElementById('verifyEmail').disabled = true;
-                    document.getElementById('registrationForm').style.display = 'block';
-                    sendCodeBtn.textContent = '已發送至信箱';
-                    msgBox.style.display = 'none';
-                } else {
-                    alert(res.message);
-                    sendCodeBtn.disabled = false;
-                    sendCodeBtn.textContent = '重新發送';
-                }
-            });
-        });
+            // 發送驗證碼
+     sendCodeBtn.addEventListener('click', () => {
+         if(!verifyEmail.value.includes('@')) { alert('請輸入有效的信箱'); return; }
+         sendCodeBtn.disabled = true;
+         sendCodeBtn.textContent = '驗證碼發送中...';
+
+         fetch(GAS_WEB_APP_URL, {
+             method: 'POST',
+             body: JSON.stringify({ action: 'sendCode', email: verifyEmail.value }),
+             headers: { 'Content-Type': 'text/plain;charset=utf-8' }
+         }).then(res => res.json()).then(res => {
+             if(res.status === 'success') {
+                 document.getElementById('verifyEmail').disabled = true;
+                 document.getElementById('registrationForm').style.display = 'block';
+                 sendCodeBtn.textContent = '✅ 已發送至信箱';
+                 msgBox.style.display = 'none';
+             } else {
+                 alert('發送失敗：' + res.message);
+                 sendCodeBtn.disabled = false;
+                 sendCodeBtn.textContent = '重新發送';
+             }
+         }).catch(err => {
+             // 新增錯誤捕捉，避免按鈕永久卡住
+             alert('網路連線或伺服器異常，請確認已將 GAS 部署為「新版本」。');
+             sendCodeBtn.disabled = false;
+             sendCodeBtn.textContent = '重新發送';
+             console.error(err);
+         });
+     });
 
         // 送出完整表單
         document.getElementById('registrationForm').addEventListener('submit', function(e) {
