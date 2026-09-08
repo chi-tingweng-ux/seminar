@@ -271,19 +271,50 @@
         const form = document.getElementById('registrationForm');
         const submitBtn = document.getElementById('submitBtn');
         const messageBox = document.getElementById('message-box');
-        const GAS_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbwyFs9I2P3Wr03ui3zDcgB1HPeanB6DTJhe4zoQkO1fORHjwsefQ049jSC650kVu8Q7/exec';
+        const GAS_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbwyFs9I2P3Wr03ui3zDcgB1HPeanB6DTJhe4zoQkO1fORHjwsefQ049jSC650kVu8Q7/exec'; 
 
         form.addEventListener('submit', function(e) {
             e.preventDefault(); 
-            if(GAS_WEB_APP_URL === 'YOUR_GAS_URL_HERE') {
-                messageBox.className = 'loading';
-                messageBox.textContent = '【測試提示】前端表單與頁籤功能正常！請繼續後續 GAS 設定以開通資料庫。';
-                messageBox.style.display = 'block';
-                return;
-            }
+            
+            // 按下按鈕後的 UI 變化
             submitBtn.disabled = true;
-            submitBtn.textContent = '處理中...';
-            /* 此處省略 Fetch API，待 GAS 寫好後補上 */
+            submitBtn.textContent = '資料傳送與產製 QR Code 中...';
+            messageBox.className = 'loading';
+            messageBox.textContent = '系統處理中，請稍候...';
+            messageBox.style.display = 'block';
+
+            // 收集表單資料
+            const formData = new FormData(form);
+            const data = {};
+            formData.forEach((value, key) => { data[key] = value });
+
+            // 透過 Fetch API 傳送資料到 Google Apps Script
+            fetch(GAS_WEB_APP_URL, {
+                method: 'POST',
+                body: JSON.stringify(data),
+                headers: { 'Content-Type': 'text/plain;charset=utf-8' }
+            })
+            .then(response => response.json())
+            .then(result => {
+                if (result.status === 'success') {
+                    messageBox.className = 'success';
+                    messageBox.textContent = '🎉 報名成功！報到 QR Code 已寄至您的信箱，請查收。';
+                    form.reset(); // 清空表單
+                } else {
+                    messageBox.className = 'error';
+                    messageBox.textContent = '❌ 報名失敗，請稍後再試。原因：' + result.message;
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                messageBox.className = 'error';
+                messageBox.textContent = '⚠️ 網路連線異常，請確認網路狀態後重試！';
+            })
+            .finally(() => {
+                // 無論成功或失敗，都把按鈕恢復原狀
+                submitBtn.disabled = false;
+                submitBtn.textContent = '確認送出報名';
+            });
         });
     </script>
 </body>
