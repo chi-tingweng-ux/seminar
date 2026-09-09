@@ -107,39 +107,55 @@
             background-color: #2b4033; /* 經典黑板綠 */
             border: 12px solid #6b4423; /* 木頭邊框顏色 */
             border-radius: 8px; /* 邊框微圓角 */
-            padding: 40px 20px;
-            margin-top: 50px;
+            padding: 40px 30px;
+            
+            /* 💡 將黑板縮小，並設定置中對齊 */
+            max-width: 650px; 
+            margin: 50px auto 0; 
+            
             box-shadow: 
-                inset 0 0 20px rgba(0,0,0,0.6), /* 內部陰影製造黑板深度與粉筆灰感 */
-                5px 5px 15px rgba(0,0,0,0.15); /* 外部陰影 */
-            color: #fdfaf6; /* 粉筆白/微黃 */
-            text-align: center; /* 內容置中 */
+                inset 0 0 20px rgba(0,0,0,0.6), 
+                5px 5px 15px rgba(0,0,0,0.15); 
+            color: #fdfaf6; 
+            text-align: center; 
         }
         
         .blackboard-title {
-            font-size: 1.8em;
+            font-size: 1.7em;
             margin-top: 0;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
             color: #fdfaf6;
-            border-bottom: 2px dashed #fdfaf6; /* 粉筆畫的虛線 */
+            border-bottom: 2px dashed #fdfaf6; 
             display: inline-block;
             padding-bottom: 10px;
-            text-shadow: 1px 1px 2px rgba(255,255,255,0.3); /* 模擬粉筆暈染 */
+            text-shadow: 1px 1px 2px rgba(255,255,255,0.3); 
             letter-spacing: 2px;
         }
         
-        .blackboard-content p {
-            font-size: 1.25em;
-            line-height: 1.8;
-            margin: 15px 0;
-            text-shadow: 1px 1px 2px rgba(255,255,255,0.2);
-            letter-spacing: 1px;
+        /* 💡 使用網格排版 (Grid) 讓冒號與內文完美對齊 */
+        .blackboard-content {
+            display: grid;
+            grid-template-columns: auto 1fr; /* 左邊標籤適應內容寬度，右邊填滿剩下空間 */
+            gap: 15px 10px; /* 設定行距與左右間距 */
+            width: fit-content; /* 讓內容區塊自動貼合文字寬度 */
+            margin: 0 auto; /* 將文字區塊在黑板中水平置中 */
+            text-align: left; /* 內文統一靠左 */
         }
         
-        .blackboard-content span.chalk-yellow {
-            color: #ffd700; /* 黃色粉筆強調標題 */
+        .chalk-label {
+            color: #ffd700;
             font-weight: bold;
-            margin-right: 10px;
+            font-size: 1.2em;
+            text-shadow: 1px 1px 2px rgba(255,255,255,0.2);
+            letter-spacing: 1px;
+            text-align: right; /* 讓標籤向冒號對齊 */
+        }
+        
+        .chalk-text {
+            font-size: 1.2em;
+            line-height: 1.5;
+            text-shadow: 1px 1px 2px rgba(255,255,255,0.2);
+            letter-spacing: 1px;
         }
         /* 設定每根波紋的高度、延遲與透明度，創造波動感 */
         .seismic-bar:nth-child(1) { height: 20%; animation-delay: -1.2s; opacity: 0.3; }
@@ -326,13 +342,25 @@
                 </div>
             </div>
 
-           <!-- 💡 活動資訊：黑板樣式 -->
+           <!-- 💡 活動資訊：精緻黑板樣式 -->
             <div class="blackboard-container">
                 <h2 class="blackboard-title">活動資訊與注意事項</h2>
+                
                 <div class="blackboard-content">
-                    <p><span class="chalk-yellow">活動日期：</span>115年 11月 24日 (週二) 14:00 - 17:00</p>
-                    <p><span class="chalk-yellow">活動地點：</span>中央氣象署 3樓 310會議室<br><span style="font-size: 0.85em; opacity: 0.85;">(臺北市中正區公園路64號)</span></p>
-                    <p><span class="chalk-yellow">主辦單位：</span>交通部中央氣象署地震測報中心</p>
+                    <!-- 第一列：日期 -->
+                    <div class="chalk-label">活動日期：</div>
+                    <div class="chalk-text">115年 11月 24日 (週二) 14:00 - 17:00</div>
+                    
+                    <!-- 第二列：地點 -->
+                    <div class="chalk-label">活動地點：</div>
+                    <div class="chalk-text">
+                        中央氣象署 3樓 310會議室<br>
+                        <span style="font-size: 0.85em; opacity: 0.85;">(臺北市中正區公園路64號)</span>
+                    </div>
+                    
+                    <!-- 第三列：主辦單位 -->
+                    <div class="chalk-label">主辦單位：</div>
+                    <div class="chalk-text">交通部中央氣象署地震測報中心</div>
                 </div>
             </div>
         </div>
