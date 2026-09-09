@@ -5,6 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>115年合作推動地震資訊傳遞服務成果交流會</title>
     <style>
+        /* 💡 新增：專業簡介區塊樣式 (對應您的圖片風格) */
+        .intro-box {
+            background-color: #f8fafc;
+            padding: 35px 40px;
+            border-radius: 12px;
+            color: #334155;
+            font-size: 1.15em;
+            line-height: 1.9;
+            text-align: justify;
+            border: 1px solid #e2e8f0;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
+        }
+        .intro-meta {
+            text-align: center;
+            font-size: 1.05em;
+            color: #64748b;
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px dashed #cbd5e1;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .intro-meta span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
         :root {
             --primary-blue: #0284c7; --light-blue: #e0f2fe; --bg-color: #f8fafc;
             --card-bg: #ffffff; --text-main: #334155; --text-muted: #64748b; --accent-orange: #f97316;
@@ -126,17 +155,29 @@
             <button class="tab-btn" onclick="openTab('registration')">線上報名</button>
         </div>
 
+        <!-- 區塊一：交流會資訊 (專業理念與精簡資訊) -->
         <div id="info" class="tab-content active">
-            <h2 class="section-title">活動資訊</h2>
-            <ul class="info-list">
-                <li><span class="label">活動日期</span><span>115年 11月 24日 (週二) 14:00 - 17:00</span></li>
-                <li><span class="label">活動地點</span><span>中央氣象署 3樓 310會議室<br>(臺北市中正區公園路64號)</span></li>
-                <li><span class="label">主辦單位</span><span>交通部中央氣象署-地震測報中心</span></li>
-                <li><span class="label">注意事項</span><span>報名成功後，系統將自動發送「報到 QR Code」至您的信箱，憑信件掃描入場。</span></li>
-            </ul>
+            <h2 class="section-title">活動宗旨與理念</h2>
+            <div class="intro-box">
+                為有效降低地震帶來的災害損失，中央氣象署地震測報中心積極推動「強震即時警報」資訊傳遞服務。鑑於全球科技尚無法精準預測地震，本服務善用地震波傳播的時間差，在具破壞力的震波抵達前發布警報，為社會大眾、校園及防救災單位爭取寶貴的應變時間。自系統上線以來，已展現極高的測報精準度，並透過災防告警系統 (PWS)、電視臺與多元網路技術，將資訊即時推播至全國。本次交流會將呈現跨域合作的客製化防護應用與系統優化成果，期能持續擴大防災量能，推動全民防災意識的提升。
+                
+                <div class="intro-meta">
+                    <span>🗓️ 115年 11月 24日 (週二) 14:00 - 17:00</span>
+                    <span>🚩 中央氣象署 (310會議室)</span>
+                </div>
+            </div>
         </div>
 
+        <!-- 區塊二：活動議程 (整合原有的詳細資訊) -->
         <div id="agenda" class="tab-content">
+            <h2 class="section-title">活動資訊與注意事項</h2>
+            <ul class="info-list" style="margin-bottom: 35px;">
+                <li><span class="label">活動日期</span><span>115年 11月 24日 (週二) 14:00 - 17:00</span></li>
+                <li><span class="label">活動地點</span><span>中央氣象署 3樓 310會議室<br>(臺北市中正區公園路64號)</span></li>
+                <li><span class="label">主辦單位</span><span>地震測報中心、健行科技大學</span></li>
+                <li><span class="label">注意事項</span><span>報名成功後，系統將自動發送「報到 QR Code」至您的信箱，活動當天請憑該信件掃描入場。</span></li>
+            </ul>
+
             <h2 class="section-title">活動流程</h2>
             <table>
                 <thead><tr><th>時間</th><th>流程</th></tr></thead>
@@ -202,7 +243,7 @@
         </div>
     </div>
 
-    <footer>主辦單位：交通部中央氣象署-地震測報中心</footer>
+    <footer>@交通部中央氣象署-地震測報中心</footer>
 
     <div id="customAlert" class="custom-alert-overlay">
         <div class="custom-alert-box">
