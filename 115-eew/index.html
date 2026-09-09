@@ -75,7 +75,28 @@
         button.submit-btn:hover { background-color: #ea580c; }
         button.submit-btn:disabled { background-color: #cbd5e1; cursor: not-allowed; }
 
-        footer { background-color: #1a1a1a; color: #ffffff; text-align: center; padding: 60px 20px; margin-top: 50px; font-size: 1.1em; letter-spacing: 2px; }
+        footer { 
+            /* 設定深藍色備用底色，並匯入您的圖片 */
+            background-color: #0b1f38; 
+            background-image: url('EEW_bg_b.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            
+            /* 調整文字與排版 */
+            color: #ffffff; 
+            text-align: center; 
+            padding: 90px 20px; /* 稍微加高 padding，讓地震波紋露出更多 */
+            margin-top: 60px; 
+            font-size: 1.2em; 
+            font-weight: bold;
+            letter-spacing: 2px; 
+            
+            /* 加入文字陰影，避免文字被圖中的高光亮線吃掉 */
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.8), -1px -1px 3px rgba(0,0,0,0.5);
+            /* 加入內陰影，讓網頁內容與頁尾的交界處更融合 */
+            box-shadow: inset 0 8px 15px rgba(0,0,0,0.2);
+        }
 
         .custom-alert-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 1000; justify-content: center; align-items: center; }
         .custom-alert-box { background: white; padding: 25px 35px; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.2); text-align: center; max-width: 400px; width: 90%; }
