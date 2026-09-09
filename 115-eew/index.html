@@ -102,57 +102,54 @@
                 grid-template-columns: 1fr;
             }
         }
-        /* 💡 黑板樣式設計 (Blackboard Style) */
+        /* 💡 黑板樣式設計 (Blackboard Style - 淺色板書版) */
         .blackboard-container {
-            background-color: #2b4033; /* 經典黑板綠 */
-            border: 12px solid #6b4423; /* 木頭邊框顏色 */
-            border-radius: 8px; /* 邊框微圓角 */
-            padding: 40px 30px;
-            
-            /* 💡 將黑板縮小，並設定置中對齊 */
+            background-color: #375342; /* 調淺的黑板綠，看起來更像擦過的黑板 */
+            border: 12px solid #6b4423; /* 木頭邊框 */
+            border-radius: 8px; 
+            padding: 30px;
             max-width: 650px; 
             margin: 50px auto 0; 
-            
             box-shadow: 
-                inset 0 0 20px rgba(0,0,0,0.6), 
+                inset 0 0 15px rgba(0,0,0,0.3), /* 減輕內陰影，讓畫面更亮 */
                 5px 5px 15px rgba(0,0,0,0.15); 
             color: #fdfaf6; 
             text-align: center; 
+            /* 💡 指定手寫板書字體 (標楷體/楷體) */
+            font-family: 'Kaiti', 'BiauKai', 'DFKai-SB', '楷體', cursive, sans-serif;
         }
         
         .blackboard-title {
-            font-size: 1.7em;
+            font-size: 1.8em;
             margin-top: 0;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
             color: #fdfaf6;
             border-bottom: 2px dashed #fdfaf6; 
             display: inline-block;
             padding-bottom: 10px;
-            text-shadow: 1px 1px 2px rgba(255,255,255,0.3); 
-            letter-spacing: 2px;
+            text-shadow: 1px 1px 3px rgba(255,255,255,0.4); /* 加強粉筆暈染感 */
+            letter-spacing: 3px;
         }
         
-        /* 💡 使用網格排版 (Grid) 讓冒號與內文完美對齊 */
         .blackboard-content {
             display: grid;
-            grid-template-columns: auto 1fr; /* 左邊標籤適應內容寬度，右邊填滿剩下空間 */
-            gap: 15px 10px; /* 設定行距與左右間距 */
-            width: fit-content; /* 讓內容區塊自動貼合文字寬度 */
-            margin: 0 auto; /* 將文字區塊在黑板中水平置中 */
-            text-align: left; /* 內文統一靠左 */
+            grid-template-columns: auto 1fr; 
+            gap: 15px 10px; 
+            width: fit-content; 
+            margin: 0 auto; 
+            text-align: left; 
         }
         
         .chalk-label {
             color: #ffd700;
-            font-weight: bold;
-            font-size: 1.2em;
+            font-size: 1.3em;
             text-shadow: 1px 1px 2px rgba(255,255,255,0.2);
             letter-spacing: 1px;
-            text-align: right; /* 讓標籤向冒號對齊 */
+            text-align: right; 
         }
         
         .chalk-text {
-            font-size: 1.2em;
+            font-size: 1.3em;
             line-height: 1.5;
             text-shadow: 1px 1px 2px rgba(255,255,255,0.2);
             letter-spacing: 1px;
@@ -344,21 +341,24 @@
 
            <!-- 💡 活動資訊：精緻黑板樣式 -->
             <div class="blackboard-container">
+                
+                <!-- 💡 粉筆手繪質感的地震波 SVG -->
+                <svg viewBox="0 0 300 50" style="width: 80%; max-width: 250px; height: auto; margin: 0 auto 10px auto; display: block; filter: drop-shadow(1px 1px 2px rgba(255,255,255,0.4));">
+                    <polyline points="0,25 70,25 85,10 100,40 115,5 130,45 145,0 160,50 175,15 190,35 205,25 300,25" fill="none" stroke="#fdfaf6" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" opacity="0.85" />
+                </svg>
+
                 <h2 class="blackboard-title">活動資訊與注意事項</h2>
                 
                 <div class="blackboard-content">
-                    <!-- 第一列：日期 -->
                     <div class="chalk-label">活動日期：</div>
                     <div class="chalk-text">115年 11月 24日 (週二) 14:00 - 17:00</div>
                     
-                    <!-- 第二列：地點 -->
                     <div class="chalk-label">活動地點：</div>
                     <div class="chalk-text">
                         中央氣象署 3樓 310會議室<br>
                         <span style="font-size: 0.85em; opacity: 0.85;">(臺北市中正區公園路64號)</span>
                     </div>
                     
-                    <!-- 第三列：主辦單位 -->
                     <div class="chalk-label">主辦單位：</div>
                     <div class="chalk-text">交通部中央氣象署地震測報中心</div>
                 </div>
