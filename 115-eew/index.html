@@ -186,18 +186,19 @@
         <!-- 區塊一：交流會資訊 -->
         <div id="info" class="tab-content active">
             
-            <!-- 💡 動態地震波裝飾 -->
-            <div class="seismic-wave-container">
-                <div class="seismic-bar"></div><div class="seismic-bar"></div>
-                <div class="seismic-bar"></div><div class="seismic-bar"></div>
-                <div class="seismic-bar"></div><div class="seismic-bar"></div>
-                <div class="seismic-bar"></div>
+            <!-- 💡 標題靠左，拿掉握手圖示，地震波移至標題右側 -->
+            <div style="display: flex; align-items: center; border-bottom: 2px solid #e0f2fe; padding-bottom: 10px; margin-bottom: 25px;">
+                <h2 style="margin: 0; font-size: 1.8em; color: #0284c7;">
+                    推動地震資訊傳遞服務
+                </h2>
+                <!-- 動態地震波特效 (微調高度與左側間距以配合標題) -->
+                <div class="seismic-wave-container" style="height: 35px; margin-bottom: 0; margin-left: 15px;">
+                    <div class="seismic-bar"></div><div class="seismic-bar"></div>
+                    <div class="seismic-bar"></div><div class="seismic-bar"></div>
+                    <div class="seismic-bar"></div><div class="seismic-bar"></div>
+                    <div class="seismic-bar"></div>
+                </div>
             </div>
-
-            <!-- 💡 新的標題與合作 ICON -->
-            <h2 class="section-title" style="text-align: center; border-bottom: none; padding-bottom: 0; margin-bottom: 25px; font-size: 1.8em; color: #0284c7;">
-                🤝 推動地震資訊傳遞服務
-            </h2>
             
             <!-- 理念與成效內文 -->
             <div class="intro-box">
@@ -212,7 +213,7 @@
                 </ul>
             </div>
 
-            <!-- 💡 活動資訊移到底部 -->
+            <!-- 活動資訊移到底部 -->
             <h2 class="section-title" style="margin-top: 40px;">活動資訊與注意事項</h2>
             <ul class="info-list">
                 <li><span class="label">活動日期</span><span>115年 11月 24日 (週二) 14:00 - 17:00</span></li>
